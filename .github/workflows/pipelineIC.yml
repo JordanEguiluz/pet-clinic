@@ -42,7 +42,7 @@ jobs:
     - name: Validando existencia de proyecto en SonarCloud
       id: validateProjectOnSonar 
       run: |
-        sed +e
+        set +e
         curl -f -x POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/projects/create' -d 'name=${{ github.event.repository.name }}' -d 'project=${{ github.event.repository.name }}' -d 'organization=curso-devsecops-pipeline' -d 'visibility=public'
         if [ $? -ne 0] 
         then
